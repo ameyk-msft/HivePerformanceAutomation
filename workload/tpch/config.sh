@@ -6,6 +6,7 @@ then
     SCALE=$TPCH_SCALE_FACTOR
 fi
 WORKLOAD=tpch
+CONNECTION_STRING=jdbc:hive2://localhost:10001
 WAREHOUSE_DIR=/hive/warehouse
 RAWDATA_DATABASE=tpch_text_${SCALE}
 QUERY_DATABASE=tpch_partitioned_orc_${SCALE}
