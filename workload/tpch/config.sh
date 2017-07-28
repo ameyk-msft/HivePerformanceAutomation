@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCALE=1000
+SCALE=100
 if [ "X$TPCH_SCALE_FACTOR" != "X" ]
 then
     SCALE=$TPCH_SCALE_FACTOR
