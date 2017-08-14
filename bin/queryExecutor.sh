@@ -19,10 +19,11 @@ basename=${name%.sql}
 basename=${basename%.txt}
 
 QUERYSTARTTIME="`date +%s`"
+START_TIME="`date +%r`"
 beeline -u ${CONNECTION_STRING} -i ${HIVE_SETTING} --hivevar DB=${DATABASE} -f $FILE > ${RESULTS_DIR}/${DATABASE}_${basename}${FILENAME_EXTENSION}.txt 2>&1
 RETURN_VAL=$?
 QUERYENDTIME="`date +%s`"
-
+END_TIME="`date +%r`"
 if [ $RETURN_VAL = 0 ]
 then
     STATUS=SUCCESS
@@ -31,7 +32,5 @@ else
 fi
 
 DIFF_IN_SECONDS="$(($QUERYENDTIME- $QUERYSTARTTIME))"
-START_TIME="`date --date='@$QUERYSTARTTIME' +%r`"
-END_TIME="`date --date='@$QUERYENDTIME' +%r`"
 echo "${basename},${DIFF_IN_SECONDS},${START_TIME},${END_TIME},${WORKLOAD},${QUERY_DATABASE},${STATUS}" >> ${QUERY_TIMES_FILE}
 
